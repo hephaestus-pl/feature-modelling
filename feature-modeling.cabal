@@ -1,0 +1,22 @@
+name:                FeatureModeling
+version:             0.1
+synopsis:            A library for feature modeling
+description:         
+
+  A Haskell library for feature modeling, including modules 
+  for feature modeling representation and modules for reasoning 
+  about feature models. 
+
+category:            Development
+license:             BSD3
+license-file:        LICENSE
+author:              Rodrigo Bonifacio
+maintainer:          rbonifacio@computer.org
+Build-Depends:       base
+
+ghc-options:         
+
+executable fm
+   Main-is:          src/FeatureModel/Main.lhs
+   build-depends:    base, containers, array, parsec, funsat, hxt, hxt-relaxng, hephaestus-commons, process
+   Hs-source-dirs:      . src tests

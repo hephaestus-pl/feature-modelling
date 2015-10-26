@@ -1,0 +1,27 @@
+FeatureModel. FeatureModel ::= Header FeatureTree Tail;
+
+Header. Header ::= "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
+                   "<featureModel chosenLayoutAlgorithm=\"1\">" ;
+
+FeatureTree. FeatureTree ::= "<struct>" Feature "</struct>";
+
+Feature.    Feature ::= "<feature" AbstractField MandatoryField "name" "=" String "/>" ;
+AndFeature. Feature ::= "<and"     AbstractField MandatoryField "name" "=" String ">" [Feature] "</and>" ;
+AltFeature. Feature ::= "<alt"     AbstractField MandatoryField "name" "=" String ">" [Feature] "</alt>" ;
+OrFeature.  Feature ::= "<or"      AbstractField MandatoryField "name" "=" String ">" [Feature] "</or>"  ;
+
+AbstractField. AbstractField  ::= "abstract" "=" BooleanValue ;
+NoAbstractFiel. AbstractField ::=  ;
+
+MandatoryField. MandatoryField   ::= "mandatory" "=" BooleanValue ;
+NoMandatoryField. MandatoryField ::= ;
+
+TrueValue. BooleanValue  ::= "\"true\""  ;
+FalseValue. BooleanValue ::= "\"false\"" ;
+
+Tail. Tail ::= "<calculations Auto=\"true\" Constraints=\"true\" Features=\"true\" Redundant=\"true\"/>"
+	       "<comments/>"
+	       "<featureOrder userDefined=\"false\"/>"
+	       "</featureModel>" ;
+
+separator Feature "";

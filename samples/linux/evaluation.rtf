@@ -1,0 +1,101 @@
+{\rtf1\mac\ansicpg10000\cocoartf824\cocoasubrtf480
+{\fonttbl\f0\fswiss\fcharset77 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww22440\viewh6140\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\f0\fs24 \cf0 ===================================\
+a) Features duplicadas\
+===================================\
+USE_GENERIC_SMP_HELPERS  (2x)\
+X86_MPPARSE (2x) \
+PCI_MMCONFIG (2x) \
+TCP_CONG_CUBIC (2x)\
+HISAX_AVM_A1_PCMCIA (2x)\
+SND_PXA2XX_AC97 (2x)\
+USB_GADGET_MUSB_HDRC (2x) \
+DEFAULT_IO_DELAY_TYPE (4x)\
+\
+A feature DEFAULT_IO_DELAY_TYPE aparece quatro vezes como filha de uma mesma feature. Parece um bug do processo de extra\'8d\'8bo usado para derivar o feature model. Observa\'8d\'8bo semelhante \'8e aplicada a algumas (a maior parte) dessas features. \
+\
+\
+Por outro lado, a feature USE_GENERIC_SMP_HELPERS aparece como filha das seguintes features: Linux_Kernel_Configuration_for_x86 e General_setup. Em ambos os casos, a feature  USE_GENERIC_SMP_HELPERS \'8e opcional. \
+\
+===============================================\
+b) Restri\'8d\'9bes adicionais referenciando features invalidas\
+==============================================\
+\
+Bom, em rela\'8d\'8bo a esse erro, foram encontradas centenas de ocorr\'90ncias. Acredito que as arquiteturas (PPC, SPARC64,... ) n\'8bo foram capturadas como features do modelo. Por outro lado, uma quantidade significativa de restri\'8d\'9bes fazem refer\'90ncia a essas arquiteturas. D\'9cvida: a arquitetura alvo deveria fazer parte do modelo de features, para que essas restri\'8d\'9bes fizessem sentido. \
+\
+Abaixo seguem algumas das restri\'8d\'9bes com problema (existem MUITAS outras). \
+\
+OBSERVACAO: se voc\'90s forem procurar por esses erros no FM original, eu traduzo (A -> B) por Or (Not(A), B): \
+\
+"Invalid reference UML found in constraint Or (Not (\\"DEFCONFIG_LIST\\"), Not (\\"UML\\"))",\
+\
+"Invalid reference PPC found in constraint Or (Not (\\"AUDITSYSCALL\\"), Or (Or (Or (Or (Or (Or (Or (\\"X86\\", \\"PPC\\"), \\"PPC64\\"), \\"S390\\"), \\"IA64\\"), \\"UML\\"), \\"SPARC64\\"), \\"SUPERH\\"))",\
+\
+"Invalid reference PPC64 found in constraint Or (Not (\\"AUDITSYSCALL\\"), Or (Or (Or (Or (Or (Or (Or (\\"X86\\", \\"PPC\\"), \\"PPC64\\"), \\"S390\\"), \\"IA64\\"), \\"UML\\"), \\"SPARC64\\"), \\"SUPERH\\"))",\
+\
+"Invalid reference S390 found in constraint Or (Not (\\"AUDITSYSCALL\\"), Or (Or (Or (Or (Or (Or (Or (\\"X86\\", \\"PPC\\"), \\"PPC64\\"), \\"S390\\"), \\"IA64\\"), \\"UML\\"), \\"SPARC64\\"), \\"SUPERH\\"))",\
+\
+"Invalid reference IA64 found in constraint Or (Not (\\"AUDITSYSCALL\\"), Or (Or (Or (Or (Or (Or (Or (\\"X86\\", \\"PPC\\"), \\"PPC64\\"), \\"S390\\"), \\"IA64\\"), \\"UML\\"), \\"SPARC64\\"), \\"SUPERH\\"))",\
+\
+"Invalid reference UML found in constraint Or (Not (\\"AUDITSYSCALL\\"), Or (Or (Or (Or (Or (Or (Or (\\"X86\\", \\"PPC\\"), \\"PPC64\\"), \\"S390\\"), \\"IA64\\"), \\"UML\\"), \\"SPARC64\\"), \\"SUPERH\\"))",\
+\
+"Invalid reference SPARC64 found in constraint Or (Not (\\"AUDITSYSCALL\\"), Or (Or (Or (Or (Or (Or (Or (\\"X86\\", \\"PPC\\"), \\"PPC64\\"), \\"S390\\"), \\"IA64\\"), \\"UML\\"), \\"SPARC64\\"), \\"SUPERH\\"))",\
+\
+"Invalid reference SUPERH found in constraint Or (Not (\\"AUDITSYSCALL\\"), Or (Or (Or (Or (Or (Or (Or (\\"X86\\", \\"PPC\\"), \\"PPC64\\"), \\"S390\\"), \\"IA64\\"), \\"UML\\"), \\"SPARC64\\"), \\"SUPERH\\"))",\
+\
+"Invalid reference FRV found in constraint Or (Not (\\"BLK_DEV_INITRD\\"), Or (\\"BROKEN\\", Not (\\"FRV\\")))",\
+\
+"Invalid reference ARM found in constraint Or (Not (\\"UID16\\"), Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (\\"ARM\\", \\"BLACKFIN\\"), \\"CRIS\\"), \\"FRV\\"), \\"H8300\\"), \\"X86_32\\"), \\"M68K\\"), And (\\"S390\\", Not (\\"X64BIT\\"))), \\"SUPERH\\"), \\"SPARC32\\"), And (\\"SPARC64\\", \\"COMPAT\\")), \\"UML\\"), And (\\"X86_64\\", \\"IA32_EMULATION\\")))",\
+\
+"Invalid reference BLACKFIN found in constraint Or (Not (\\"UID16\\"), Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (\\"ARM\\", \\"BLACKFIN\\"), \\"CRIS\\"), \\"FRV\\"), \\"H8300\\"), \\"X86_32\\"), \\"M68K\\"), And (\\"S390\\", Not (\\"X64BIT\\"))), \\"SUPERH\\"), \\"SPARC32\\"), And (\\"SPARC64\\", \\"COMPAT\\")), \\"UML\\"), And (\\"X86_64\\", \\"IA32_EMULATION\\")))",\
+\
+"Invalid reference CRIS found in constraint Or (Not (\\"UID16\\"), Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (\\"ARM\\", \\"BLACKFIN\\"), \\"CRIS\\"), \\"FRV\\"), \\"H8300\\"), \\"X86_32\\"), \\"M68K\\"), And (\\"S390\\", Not (\\"X64BIT\\"))), \\"SUPERH\\"), \\"SPARC32\\"), And (\\"SPARC64\\", \\"COMPAT\\")), \\"UML\\"), And (\\"X86_64\\", \\"IA32_EMULATION\\")))",\
+\
+"Invalid reference FRV found in constraint Or (Not (\\"UID16\\"), Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (\\"ARM\\", \\"BLACKFIN\\"), \\"CRIS\\"), \\"FRV\\"), \\"H8300\\"), \\"X86_32\\"), \\"M68K\\"), And (\\"S390\\", Not (\\"X64BIT\\"))), \\"SUPERH\\"), \\"SPARC32\\"), And (\\"SPARC64\\", \\"COMPAT\\")), \\"UML\\"), And (\\"X86_64\\", \\"IA32_EMULATION\\")))",\
+\
+"Invalid reference H8300 found in constraint Or (Not (\\"UID16\\"), Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (\\"ARM\\", \\"BLACKFIN\\"), \\"CRIS\\"), \\"FRV\\"), \\"H8300\\"), \\"X86_32\\"), \\"M68K\\"), And (\\"S390\\", Not (\\"X64BIT\\"))), \\"SUPERH\\"), \\"SPARC32\\"), And (\\"SPARC64\\", \\"COMPAT\\")), \\"UML\\"), And (\\"X86_64\\", \\"IA32_EMULATION\\")))",\
+\
+"Invalid reference M68K found in constraint Or (Not (\\"UID16\\"), Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (\\"ARM\\", \\"BLACKFIN\\"), \\"CRIS\\"), \\"FRV\\"), \\"H8300\\"), \\"X86_32\\"), \\"M68K\\"), And (\\"S390\\", Not (\\"X64BIT\\"))), \\"SUPERH\\"), \\"SPARC32\\"), And (\\"SPARC64\\", \\"COMPAT\\")), \\"UML\\"), And (\\"X86_64\\", \\"IA32_EMULATION\\")))",\
+\
+"Invalid reference S390 found in constraint Or (Not (\\"UID16\\"), Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (\\"ARM\\", \\"BLACKFIN\\"), \\"CRIS\\"), \\"FRV\\"), \\"H8300\\"), \\"X86_32\\"), \\"M68K\\"), And (\\"S390\\", Not (\\"X64BIT\\"))), \\"SUPERH\\"), \\"SPARC32\\"), And (\\"SPARC64\\", \\"COMPAT\\")), \\"UML\\"), And (\\"X86_64\\", \\"IA32_EMULATION\\")))",\
+\
+"Invalid reference SUPERH found in constraint Or (Not (\\"UID16\\"), Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (\\"ARM\\", \\"BLACKFIN\\"), \\"CRIS\\"), \\"FRV\\"), \\"H8300\\"), \\"X86_32\\"), \\"M68K\\"), And (\\"S390\\", Not (\\"X64BIT\\"))), \\"SUPERH\\"), \\"SPARC32\\"), And (\\"SPARC64\\", \\"COMPAT\\")), \\"UML\\"), And (\\"X86_64\\", \\"IA32_EMULATION\\")))",\
+\
+"Invalid reference SPARC32 found in constraint Or (Not (\\"UID16\\"), Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (\\"ARM\\", \\"BLACKFIN\\"), \\"CRIS\\"), \\"FRV\\"), \\"H8300\\"), \\"X86_32\\"), \\"M68K\\"), And (\\"S390\\", Not (\\"X64BIT\\"))), \\"SUPERH\\"), \\"SPARC32\\"), And (\\"SPARC64\\", \\"COMPAT\\")), \\"UML\\"), And (\\"X86_64\\", \\"IA32_EMULATION\\")))",\
+\
+"Invalid reference SPARC64 found in constraint Or (Not (\\"UID16\\"), Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (\\"ARM\\", \\"BLACKFIN\\"), \\"CRIS\\"), \\"FRV\\"), \\"H8300\\"), \\"X86_32\\"), \\"M68K\\"), And (\\"S390\\", Not (\\"X64BIT\\"))), \\"SUPERH\\"), \\"SPARC32\\"), And (\\"SPARC64\\", \\"COMPAT\\")), \\"UML\\"), And (\\"X86_64\\", \\"IA32_EMULATION\\")))",\
+\
+"Invalid reference UML found in constraint Or (Not (\\"UID16\\"), Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (Or (\\"ARM\\", \\"BLACKFIN\\"), \\"CRIS\\"), \\"FRV\\"), \\"H8300\\"), \\"X86_32\\"), \\"M68K\\"), And (\\"S390\\", Not (\\"X64BIT\\"))), \\"SUPERH\\"), \\"SPARC32\\"), And (\\"SPARC64\\", \\"COMPAT\\")), \\"UML\\"), And (\\"X86_64\\", \\"IA32_EMULATION\\")))",\
+\
+"Invalid reference ALPHA found in constraint Or (Not (\\"PCSPKR_PLATFORM\\"), Or (Or (Or (Or (Or (\\"ALPHA\\", \\"X86\\"), \\"MIPS\\"), \\"PPC_PREP\\"), \\"PPC_CHRP\\"), \\"PPC_PSERIES\\"))",\
+\
+"Invalid reference MIPS found in constraint Or (Not (\\"PCSPKR_PLATFORM\\"), Or (Or (Or (Or (Or (\\"ALPHA\\", \\"X86\\"), \\"MIPS\\"), \\"PPC_PREP\\"), \\"PPC_CHRP\\"), \\"PPC_PSERIES\\"))",\
+\
+"Invalid reference PPC_PREP found in constraint Or (Not (\\"PCSPKR_PLATFORM\\"), Or (Or (Or (Or (Or (\\"ALPHA\\", \\"X86\\"), \\"MIPS\\"), \\"PPC_PREP\\"), \\"PPC_CHRP\\"), \\"PPC_PSERIES\\"))",\
+\
+"Invalid reference PPC_CHRP found in constraint Or (Not (\\"PCSPKR_PLATFORM\\"), Or (Or (Or (Or (Or (\\"ALPHA\\", \\"X86\\"), \\"MIPS\\"), \\"PPC_PREP\\"), \\"PPC_CHRP\\"), \\"PPC_PSERIES\\"))",\
+\
+"Invalid reference PPC_PSERIES found in constraint Or (Not (\\"PCSPKR_PLATFORM\\"), Or (Or (Or (Or (Or (\\"ALPHA\\", \\"X86\\"), \\"MIPS\\"), \\"PPC_PREP\\"), \\"PPC_CHRP\\"), \\"PPC_PSERIES\\"))",\
+\
+"Invalid reference GENERIC_CLOCKEVENTS_MIGR found in constraint Or (Not (\\"GENERIC_CLOCKEVENTS_BUILD\\"), Or (\\"GENERIC_CLOCKEVENTS\\", \\"GENERIC_CLOCKEVENTS_MIGR\\"))",\
+\
+"Invalid reference X86_NUMAQ found in constraint Or (Not (\\"X86_PC\\"), And (And (And (Not (\\"X86_NUMAQ\\"), Not (\\"X86_SUMMIT\\")), Not (\\"X86_ES7000\\")), Not (\\"X86_BIGSMP\\")))",\
+\
+"Invalid reference X86_SUMMIT found in constraint Or (Not (\\"X86_PC\\"), And (And (And (Not (\\"X86_NUMAQ\\"), Not (\\"X86_SUMMIT\\")), Not (\\"X86_ES7000\\")), Not (\\"X86_BIGSMP\\")))",\
+\
+"Invalid reference X86_ES7000 found in constraint Or (Not (\\"X86_PC\\"), And (And (And (Not (\\"X86_NUMAQ\\"), Not (\\"X86_SUMMIT\\")), Not (\\"X86_ES7000\\")), Not (\\"X86_BIGSMP\\")))",\
+\
+"Invalid reference X86_BIGSMP found in constraint Or (Not (\\"X86_PC\\"), And (And (And (Not (\\"X86_NUMAQ\\"), Not (\\"X86_SUMMIT\\")), Not (\\"X86_ES7000\\")), Not (\\"X86_BIGSMP\\")))",\
+\
+"Invalid reference X86_NUMAQ found in constraint Or (Not (\\"X86_ELAN\\"), And (And (And (And (\\"X86_32\\", Not (\\"X86_NUMAQ\\")), Not (\\"X86_SUMMIT\\")), Not (\\"X86_ES7000\\")), Not (\\"X86_BIGSMP\\")))",\
+\
+"Invalid reference X86_SUMMIT found in constraint Or (Not (\\"X86_ELAN\\"), And (And (And (And (\\"X86_32\\", Not (\\"X86_NUMAQ\\")), Not (\\"X86_SUMMIT\\")), Not (\\"X86_ES7000\\")), Not (\\"X86_BIGSMP\\")))",\
+\
+"Invalid reference X86_ES7000 found in constraint Or (Not (\\"X86_ELAN\\"), And (And (And (And (\\"X86_32\\", Not (\\"X86_NUMAQ\\")), Not (\\"X86_SUMMIT\\")), Not (\\"X86_ES7000\\")), Not (\\"X86_BIGSMP\\")))",\
+\
+"Invalid reference X86_BIGSMP found in constraint Or (Not (\\"X86_ELAN\\"), And (And (And (And (\\"X86_32\\", Not (\\"X86_NUMAQ\\")), Not (\\"X86_SUMMIT\\")), Not (\\"X86_ES7000\\")), Not (\\"X86_BIGSMP\\")))",\
+}

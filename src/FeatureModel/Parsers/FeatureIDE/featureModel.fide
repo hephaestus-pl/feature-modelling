@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<featureModel chosenLayoutAlgorithm="1">
+		<struct>
+			<and mandatory="true" name="iris">
+				<and mandatory="true" name="services">
+					<feature mandatory="true" name="sendMessage"/>
+					<feature mandatory="true" name="receiveMessage"/>
+				</and>
+				<feature name="addressBook"/>
+				<alt mandatory="true" name="persistence">
+					<feature mandatory="true" name="relational"/>
+					<feature mandatory="true" name="nonRelational"/>
+				</alt>
+				<feature name="tagging"/>
+			</and>
+		</struct>
+		<constraints/>
+		<comments/>
+		<featureOrder userDefined="false"/>
+	</featureModel>

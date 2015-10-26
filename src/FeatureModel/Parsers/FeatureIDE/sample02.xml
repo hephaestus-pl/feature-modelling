@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<featureModel chosenLayoutAlgorithm="1">
+  <struct>
+    <and abstract="true" mandatory="true" name="MobilePhone">
+      <feature mandatory="true" name="Calls" />
+      <feature name="GPS"/>
+      <alt mandatory="true" name="Screen">
+	<feature mandatory="true" name="Basic"/>
+	<feature mandatory="true" name="Colour"/>
+	<feature mandatory="true" name="High_resolution"/>
+      </alt>
+      <or name="Media">
+	<feature mandatory="true" name="Camera"/>
+	<feature mandatory="true" name="MP3"/>
+      </or>
+    </and>
+  </struct>
+  <calculations Auto="true" Constraints="true" Features="true" Redundant="true"/>
+  <comments/>
+  <featureOrder userDefined="false"/>
+</featureModel>
