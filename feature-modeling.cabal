@@ -1,4 +1,4 @@
-name:                FeatureModeling
+name:                feature-modeling
 version:             0.1
 synopsis:            A library for feature modeling
 description:         
@@ -14,9 +14,41 @@ author:              Rodrigo Bonifacio
 maintainer:          rbonifacio@computer.org
 Build-Depends:       base
 
-ghc-options:         
-
+library
+   exposed-modules: FeatureModel.Types,
+                    FeatureModel.FCTypeChecker, 
+                    FeatureModel.FMTypeChecker,                    
+                    FeatureModel.Parsers.GenericParser, 
+                    FeatureModel.Parsers.Expression, 
+                    FeatureModel.Parsers.FMGrammar.Grammar2FeatureModel,
+                    FeatureModel.Parsers.FMIde.FMIde2FeatureModel,
+                    FeatureModel.Parsers.FeatureIDE.FeatureIDE2FeatureModel, 
+                    FeatureModel.Parsers.FMPlugin.XmlFeatureParser,
+                    FeatureModel.Parsers.FMGrammar.LexFMGrammar,
+                    FeatureModel.Parsers.FMGrammar.AbsFMGrammar,
+                    FeatureModel.Parsers.FMGrammar.ParFMGrammar,
+                    FeatureModel.Parsers.FMGrammar.ErrM,
+                    FeatureModel.Parsers.FMIde.AbsFMIde,
+                    FeatureModel.Parsers.FMIde.LexFMIde,
+                    FeatureModel.Parsers.FMIde.ParFMIde,
+                    FeatureModel.Parsers.FMIde.ErrM,
+                    FeatureModel.Parsers.FMPlugin.XmlFeatureModel,
+                    FeatureModel.Parsers.FeatureIDE.LexFeatureIDE,
+                    FeatureModel.Parsers.FeatureIDE.AbsFeatureIDE,
+                    FeatureModel.Parsers.FeatureIDE.ParFeatureIDE,
+                    FeatureModel.Parsers.FeatureIDE.ErrM,
+                    FeatureModel.Parsers.SXFM.ParsecSXFM
+   Hs-source-dirs: . src 
+   build-depends: base, 
+                  containers, 
+                  array, 
+                  parsec, 
+                  funsat, 
+                  hxt, 
+                  hxt-relaxng, 
+                  hephaestus-commons, 
+                  process
 executable fm
    Main-is:          src/FeatureModel/Main.lhs
-   build-depends:    base, containers, array, parsec, funsat, hxt, hxt-relaxng, hephaestus-commons, process
-   Hs-source-dirs:      . src tests
+   build-depends: base, containers, array, parsec, funsat, hxt, hxt-relaxng, hephaestus-commons, process
+   Hs-source-dirs: . src 
